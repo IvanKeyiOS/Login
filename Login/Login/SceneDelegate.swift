@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  Login
 //
-//  Created by Иван Курганский on 04/01/2025.
+//  Created by Иван Курганский on 06/01/2025.
 //
 
 import UIKit

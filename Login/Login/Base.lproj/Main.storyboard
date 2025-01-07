@@ -133,7 +133,8 @@
                                             <fontDescription key="titleFontDescription" type="boldSystem" pointSize="14"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <segue destination="LwC-t1-btE" kind="show" id="egQ-u6-YUc"/>
+                                            <action selector="loginButtonAction:" destination="bf9-Jx-SyI" eventType="touchUpInside" id="Z3z-Lm-Qiw"/>
+                                            <segue destination="LwC-t1-btE" kind="show" id="VKg-SL-t1o"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -154,6 +155,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Signup here">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="signHereButtonAction:" destination="bf9-Jx-SyI" eventType="touchUpInside" id="4e5-3B-yvu"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -180,6 +184,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5lx-1f-uJm"/>
+                    <connections>
+                        <outlet property="doNotHaveAccountLabel" destination="UvH-bh-Tv1" id="BfQ-0i-7MZ"/>
+                        <outlet property="emailTextField" destination="piX-No-iTn" id="zEE-R8-RAo"/>
+                        <outlet property="lineUnderEmailView" destination="4V8-dY-PFD" id="n3T-lo-3uS"/>
+                        <outlet property="lineUnderPasswordView" destination="OKd-dn-sWo" id="Dz4-37-TzU"/>
+                        <outlet property="loginButton" destination="r9c-cG-HZF" id="IjQ-fY-ZFY"/>
+                        <outlet property="passwordTextField" destination="Ex2-xa-ynb" id="EDE-8C-C8Z"/>
+                        <outlet property="signHereButton" destination="m1V-98-eny" id="QM1-hD-AEW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="myL-On-l3V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

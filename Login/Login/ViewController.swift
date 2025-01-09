@@ -22,12 +22,20 @@ class ViewController: UIViewController {
     
     //MARK: - Properties
     private let activeColor = UIColor(named: "notes") ?? UIColor.gray
-    private var email: String = ""
-    private var password: String = ""
+    private var email: String = "" {
+        didSet {
+            turnButtonLoginOn()
+        }
+    }
+    
+    private var password: String = "" {
+        didSet {
+            turnButtonLoginOn()
+        }
+    }
     
     private let mockEmail = "abc@gmail.com"
     private let mockPassword = "12345678"
-    
     
     // MARK: - Methods
     override func viewDidLoad() {
@@ -46,6 +54,9 @@ class ViewController: UIViewController {
         loginButton.layer.shadowOpacity = 0.5
         loginButton.layer.shadowOffset = CGSize(width: 0, height: 8)
         loginButton.layer.shadowRadius = 8
+        
+        loginButton.isUserInteractionEnabled = false
+        loginButton.backgroundColor = .systemGray5
     }
     
     //MARK: - IBActions
@@ -78,6 +89,8 @@ class ViewController: UIViewController {
     
     @IBAction func signHereButtonAction(_ sender: Any) {
         print("sign here button was push")
+        performSegue(withIdentifier: "GoToSignup", sender: sender)
+
     }
 }
 
@@ -91,19 +104,20 @@ extension ViewController: UITextFieldDelegate {
             
             if isValidEmail {
                 email = text
-                envelopImageView.tintColor = .systemGray5
-                lineUnderEmailView.backgroundColor = .systemGray5
+                envelopImageView.tintColor = activeColor
+                lineUnderEmailView.backgroundColor = activeColor
             } else {
+                email = ""
                 makeErrorField(textField: textField)
             }
         case passwordTextField:
             let isValidPassword = check(password: text)
-            
             if isValidPassword {
                 password = text
-                lockImageView.tintColor = .systemGray5
-                lineUnderPasswordView.backgroundColor = .systemGray5
+                lockImageView.tintColor = activeColor
+                lineUnderPasswordView.backgroundColor = activeColor
             } else {
+                password = ""
                 makeErrorField(textField: textField)
             }
         default:
@@ -116,19 +130,24 @@ extension ViewController: UITextFieldDelegate {
     }
     
     private func check(password: String) -> Bool {
-        return password.count >= 4
+        return password.count >= 7
     }
     
     private func makeErrorField(textField: UITextField) {
         switch textField {
         case emailTextField:
-            envelopImageView.tintColor = activeColor
-            lineUnderEmailView.backgroundColor = activeColor
+            envelopImageView.tintColor = .systemGray5
+            lineUnderEmailView.backgroundColor = .systemGray5
         case passwordTextField:
-            lockImageView.tintColor = activeColor
-            lineUnderPasswordView.backgroundColor = activeColor
+            lockImageView.tintColor = .systemGray5
+            lineUnderPasswordView.backgroundColor = .systemGray5
         default:
             print("unknown textField")
         }
+    }
+    
+    private func turnButtonLoginOn() {
+        loginButton.backgroundColor = !(email == mockEmail && password == mockPassword) ? .systemGray5 :  activeColor
+        loginButton.isUserInteractionEnabled = (email == mockEmail && password == mockPassword)
     }
 }
